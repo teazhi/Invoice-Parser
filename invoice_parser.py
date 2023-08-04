@@ -3,12 +3,20 @@ import pdfplumber
 import json
 from reportlab.pdfgen.canvas import Canvas
 
+print("Please place all invoices in the same folder as this script and then provide the path to the folder.")
+path = input("Path (default = current directory):")
+
+if len(path) == 0:
+    directoryPath = os.listdir('.')
+else:
+    directoryPath = os.listdir(path)
+
 allInvoices = []
 EXPORT_FILE_NAME = "INVOICE_EXPORT.pdf"
 
-for i in range(len(os.listdir('.'))):
-    if os.listdir('.')[i] != EXPORT_FILE_NAME and 'inv' in os.listdir('.')[i].lower():
-        os.rename(os.listdir('.')[i], f'invoice{i}.pdf')
+for i in range(len(directoryPath)):
+    if directoryPath[i] != EXPORT_FILE_NAME and 'inv' in directoryPath[i].lower():
+        os.rename(directoryPath[i], f'invoice{i}.pdf')
         allInvoices.append(f'invoice{i}.pdf')
 
 invoiceParseResults = []
