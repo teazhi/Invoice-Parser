@@ -17,11 +17,14 @@ try:
     allInvoices = []
     EXPORT_FILE_NAME = "INVOICE_EXPORT.pdf"
 
+    invoiceCount = 0
     for i in range(len(directoryPath)):
         if directoryPath[i] != EXPORT_FILE_NAME and 'inv' in directoryPath[i].lower():
-            if '.pdf' in directoryPath[i].lower():
-                os.rename(directoryPath[i], f'invoice{i}.pdf')
-                allInvoices.append(f'invoice{i}.pdf')
+            # print(directoryPath[i].lower())
+            if directoryPath[i].endswith('.pdf'):
+                invoiceCount += 1
+                os.rename(directoryPath[i], f'invoice{invoiceCount}.pdf')
+                allInvoices.append(f'invoice{invoiceCount}.pdf')
             else:
                 print("No PDF file in this directory. Please add you invoice PDF into this directory and try again.")
                 exit()
