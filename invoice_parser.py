@@ -3,6 +3,7 @@ import pdfplumber
 import json
 from reportlab.pdfgen.canvas import Canvas
 import traceback
+from sys import exit
 
 print("Please place all invoices in the same folder as this script and then provide the path to the folder.")
 path = input("Path (default = current directory):")
